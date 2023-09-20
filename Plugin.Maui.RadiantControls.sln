@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Maui.RadiantControls", "src\Plugin.Maui.RadiantControls\Plugin.Maui.RadiantControls.csproj", "{64EA7347-B2A7-481A-8C4E-189AA4784040}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Maui.RadiantControls.Sample", "samples\Plugin.Maui.RadiantControls.Sample\Plugin.Maui.RadiantControls.Sample.csproj", "{987BDBD1-92E1-4443-B868-3152A830DAFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64EA7347-B2A7-481A-8C4E-189AA4784040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64EA7347-B2A7-481A-8C4E-189AA4784040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64EA7347-B2A7-481A-8C4E-189AA4784040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64EA7347-B2A7-481A-8C4E-189AA4784040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{987BDBD1-92E1-4443-B868-3152A830DAFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{987BDBD1-92E1-4443-B868-3152A830DAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{987BDBD1-92E1-4443-B868-3152A830DAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{987BDBD1-92E1-4443-B868-3152A830DAFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5378BF6-AD4B-48C5-95BA-58D228C22495}
+	EndGlobalSection
+EndGlobal

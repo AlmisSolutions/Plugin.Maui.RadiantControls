@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Plugin.Maui.RadiantControls.Sample.MainPage">
+    <ScrollView>
+        <StackLayout>
+            <Image
+                Source="logo.png"
+                HeightRequest="200"
+                Margin="0,10,0,0"/>
+            <Label 
+                Text="Radiant Controls" 
+                FontSize="Title" 
+                FontAttributes="Bold" 
+                HorizontalOptions="CenterAndExpand"
+                Margin="0,10"/>
+            <Label 
+                Text="This project aims to bring components from popular web and mobile frameworks to the MAUI framework." 
+                FontSize="Body"
+                HorizontalTextAlignment="Center"
+                HorizontalOptions="CenterAndExpand"
+                Margin="0,0,0,15"/>
+            <StackLayout>
+                <Label 
+                    Text="Project Roadmap" 
+                    FontSize="Large" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="0,0,0,10"/>
+                <Label 
+                    Text="This project is still in its early stages of development, please check the roadmap below. You can find the components in the menu." 
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="0,0,0,15"/>
+                <Label 
+                    Text="Stable Components" 
+                    FontSize="Medium" 
+                    FontAttributes="Bold"
+                    TextDecorations="Underline"
+                    HorizontalOptions="CenterAndExpand"/>
+                <StackLayout>
+                    <Label
+                        Text="None"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <Label 
+                    Text="Beta Components" 
+                    FontSize="Medium" 
+                    FontAttributes="Bold"
+                    TextDecorations="Underline"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="0,15,0,0"/>
+                <StackLayout>
+                    <Label
+                        Text="Avatar"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Label
+                        Text="AvatarGroup"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <Label 
+                    Text="In Progress Components" 
+                    FontSize="Medium" 
+                    FontAttributes="Bold"
+                    TextDecorations="Underline"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="0,15,0,0"/>
+                <StackLayout>
+                    <Label
+                        Text="ListView"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Label
+                        Text="Carousel"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <Label 
+                    Text="Planned Components" 
+                    FontSize="Medium" 
+                    FontAttributes="Bold"
+                    TextDecorations="Underline"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="0,15,0,0"/>
+                <StackLayout>
+                    <Label
+                        Text="Tab"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Label
+                        Text="Swipe"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

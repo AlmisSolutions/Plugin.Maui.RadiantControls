@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Plugin.Maui.RadiantControls.RcAvatar"
+    Loaded="RcContentView_Loaded">
+    <Grid
+        HorizontalOptions="Start"
+        VerticalOptions="Start">
+        <Frame
+            x:Name="ContainerFrame"
+            HorizontalOptions="Start"
+            Padding="{Binding AvatarPadding}"
+            WidthRequest="{Binding Size}"
+            HeightRequest="{Binding Size}"
+            BorderColor="{Binding BadgeBorderColor}"
+            BackgroundColor="{Binding ContainerBackgroundColor}"
+            IsClippedToBounds="True">
+            <Grid
+                IsClippedToBounds="True">
+                <Label
+                    x:Name="InitialsLabel"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Initials}"
+                    TextTransform="{Binding InitialsLabelStyle.TextTransform}"
+                    LineBreakMode="{Binding InitialsLabelStyle.LineBreakMode}"
+                    TextColor="{Binding InitialsLabelStyle.TextColor}"
+                    CharacterSpacing="{Binding InitialsLabelStyle.CharacterSpacing}"
+                    FontAttributes="{Binding InitialsLabelStyle.FontAttributes}"
+                    TextDecorations="{Binding InitialsLabelStyle.TextDecorations}"
+                    FontFamily="{Binding InitialsLabelStyle.FontFamily}"
+                    FontSize="{Binding InitialsLabelStyle.FontSize}"
+                    FontAutoScalingEnabled="{Binding InitialsLabelStyle.FontAutoScalingEnabled}"
+                    LineHeight="{Binding InitialsLabelStyle.LineHeight}"
+                    MaxLines="{Binding InitialsLabelStyle.MaxLines}"
+                    Padding="{Binding InitialsLabelStyle.Padding}"
+                    TextType="{Binding InitialsLabelStyle.TextType}" />
+                <Image
+                    x:Name="AvatarImage"/>
+            </Grid>
+        </Frame>
+        <Frame
+            x:Name="OuterBadgeFrame"
+            IsVisible="{Binding HasBadge}"
+            BorderColor="Transparent"
+            BackgroundColor="White"
+            SizeChanged="OuterBadgeFrame_SizeChanged">
+            <Frame
+                x:Name="InnerBadgeFrame"
+                Padding="{Binding BadgePadding}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BorderColor="Transparent"
+                BackgroundColor="{Binding BadgeBackgroundColor}"
+                SizeChanged="InnerBadgeFrame_SizeChanged">
+                <Label
+                    x:Name="BadgeLabel"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding BadgeText}"
+                    TextTransform="{Binding BadgeLabelStyle.TextTransform}"
+                    LineBreakMode="{Binding BadgeLabelStyle.LineBreakMode}"
+                    TextColor="{Binding BadgeLabelStyle.TextColor}"
+                    CharacterSpacing="{Binding BadgeLabelStyle.CharacterSpacing}"
+                    FontAttributes="{Binding BadgeLabelStyle.FontAttributes}"
+                    TextDecorations="{Binding BadgeLabelStyle.TextDecorations}"
+                    FontFamily="{Binding BadgeLabelStyle.FontFamily}"
+                    FontSize="{Binding BadgeLabelStyle.FontSize}"
+                    FontAutoScalingEnabled="{Binding BadgeLabelStyle.FontAutoScalingEnabled}"
+                    LineHeight="{Binding BadgeLabelStyle.LineHeight}"
+                    MaxLines="{Binding BadgeLabelStyle.MaxLines}"
+                    Padding="{Binding BadgeLabelStyle.Padding}"
+                    TextType="{Binding BadgeLabelStyle.TextType}" 
+                    SizeChanged="BadgeLabel_SizeChanged"/>
+            </Frame>
+        </Frame>
+    </Grid>
+</ContentView>
