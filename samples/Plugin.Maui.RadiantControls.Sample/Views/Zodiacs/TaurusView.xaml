@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Views.Zodiacs.TaurusView">
+    <VerticalStackLayout
+        HorizontalOptions="Center">
+        <Label
+            x:Name="TitleLabel"
+            Text="Taurus"
+            FontSize="Title"
+            HorizontalTextAlignment="Center"/>
+        <Image
+            Source="taurus.png"
+            HeightRequest="128">
+            <Image.Behaviors>
+                <toolkit:IconTintColorBehavior>
+                    <toolkit:IconTintColorBehavior.TintColor>
+                        <AppThemeBinding Light="Black" Dark="White" />
+                    </toolkit:IconTintColorBehavior.TintColor>
+                </toolkit:IconTintColorBehavior>
+            </Image.Behaviors>
+        </Image>
+        <Label
+            Text="Apr 20 - May 20"
+            HorizontalTextAlignment="Center"
+            FontSize="Subtitle" />
+        <Label
+            Text="Practical, reliable, and patient. They value stability and enjoy the comforts of life."
+            HorizontalTextAlignment="Center"
+            FontSize="Body" />
+    </VerticalStackLayout>
+</ContentView>

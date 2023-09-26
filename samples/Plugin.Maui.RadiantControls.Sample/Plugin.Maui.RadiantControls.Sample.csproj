@@ -49,6 +49,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -60,14 +61,42 @@
 	  <None Remove="Resources\Images\avatar.jpeg" />
 	  <None Remove="Resources\Images\placeholder.png" />
 	  <None Remove="Resources\Images\logo.svg" />
+	  <None Remove="Resources\Images\aquarius.svg" />
+	  <None Remove="Resources\Images\aries.svg" />
+	  <None Remove="Resources\Images\cancer.svg" />
+	  <None Remove="Resources\Images\capricorn.svg" />
+	  <None Remove="Resources\Images\gemini.svg" />
+	  <None Remove="Resources\Images\leo.svg" />
+	  <None Remove="Resources\Images\libra.svg" />
+	  <None Remove="Resources\Images\pisces.svg" />
+	  <None Remove="Resources\Images\sagittarius.svg" />
+	  <None Remove="Resources\Images\scorpio.svg" />
+	  <None Remove="Resources\Images\taurus.svg" />
+	  <None Remove="Resources\Images\virgo.svg" />
+	  <None Remove="Views\" />
+	  <None Remove="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Resources\Images\" />
 	  <Folder Include="Pages\" />
+	  <Folder Include="Views\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\avatar.jpeg" />
 	  <MauiImage Include="Resources\Images\placeholder.png" />
 	  <MauiImage Include="Resources\Images\logo.svg" />
+	  <MauiImage Include="Resources\Images\aquarius.svg" />
+	  <MauiImage Include="Resources\Images\aries.svg" />
+	  <MauiImage Include="Resources\Images\cancer.svg" />
+	  <MauiImage Include="Resources\Images\capricorn.svg" />
+	  <MauiImage Include="Resources\Images\gemini.svg" />
+	  <MauiImage Include="Resources\Images\leo.svg" />
+	  <MauiImage Include="Resources\Images\libra.svg" />
+	  <MauiImage Include="Resources\Images\pisces.svg" />
+	  <MauiImage Include="Resources\Images\sagittarius.svg" />
+	  <MauiImage Include="Resources\Images\scorpio.svg" />
+	  <MauiImage Include="Resources\Images\taurus.svg" />
+	  <MauiImage Include="Resources\Images\virgo.svg" />
 	</ItemGroup>
 </Project>

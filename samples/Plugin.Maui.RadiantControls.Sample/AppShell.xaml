@@ -13,9 +13,14 @@
         Route="MainPage" />
     
     <ShellContent
-        Title="Avatar"
+        Title="RcAvatar and RcAvatarGroup"
         ContentTemplate="{DataTemplate pages:AvatarPage}"
         Route="AvatarPage" />
+
+    <ShellContent
+        Title="RcListView"
+        ContentTemplate="{DataTemplate pages:ListViewPage}"
+        Route="ListViewPage" />
 
 </Shell>
 

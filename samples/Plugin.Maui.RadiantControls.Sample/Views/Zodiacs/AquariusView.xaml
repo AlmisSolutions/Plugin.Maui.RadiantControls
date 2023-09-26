@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Views.Zodiacs.AquariusView">
+    <VerticalStackLayout
+        HorizontalOptions="Center">
+        <Label
+            x:Name="TitleLabel"
+            Text="Aquarius"
+            FontSize="Title"
+            HorizontalTextAlignment="Center"/>
+        <Image
+            Source="aquarius.png"
+            HeightRequest="128">
+            <Image.Behaviors>
+                <toolkit:IconTintColorBehavior>
+                    <toolkit:IconTintColorBehavior.TintColor>
+                        <AppThemeBinding Light="Black" Dark="White" />
+                    </toolkit:IconTintColorBehavior.TintColor>
+                </toolkit:IconTintColorBehavior>
+            </Image.Behaviors>
+        </Image>
+        <Label
+            Text="Jan 20 - Feb 18"
+            HorizontalTextAlignment="Center"
+            FontSize="Subtitle" />
+        <Label
+            Text="Innovative, independent, and humanitarian. They value originality and strive to make a difference."
+            HorizontalTextAlignment="Center"
+            FontSize="Body" />
+    </VerticalStackLayout>
+</ContentView>

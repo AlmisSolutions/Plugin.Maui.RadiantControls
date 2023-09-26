@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rc="clr-namespace:Plugin.Maui.RadiantControls;assembly=Plugin.Maui.RadiantControls"
+    xmlns:zodiacs="clr-namespace:Plugin.Maui.RadiantControls.Sample.Views.Zodiacs"
+    xmlns:system="clr-namespace:System;assembly=netstandard"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.ListViewPage"
+    Title="RcListView">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="*,*,*,*,*"
+                RowSpacing="10"
+                ColumnSpacing="10">
+                <Entry
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Keyboard="Numeric"
+                    Placeholder="Spacing"
+                    Text="{Binding Spacing, Mode=TwoWay}" />
+                <Picker
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Title="Select Orientation"
+                    SelectedItem="{Binding Orientation, Mode=TwoWay}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type StackOrientation}">
+                            <x:Static Member="StackOrientation.Vertical" />
+                            <x:Static Member="StackOrientation.Horizontal" />
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Selected Item: " />
+                            <Span Text="{Binding SelectedItem, Source={x:Reference ZodiacsList}}" />
+                            <Span Text="{x:Static system:Environment.NewLine}" />
+                            <Span Text="Selected View: " />
+                            <Span Text="{Binding SelectedView, Source={x:Reference ZodiacsList}}" />
+                            <Span Text="{x:Static system:Environment.NewLine}" />
+                            <Span Text="Selected Index: " />
+                            <Span Text="{Binding SelectedIndex, Source={x:Reference ZodiacsList}}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Visible Items: " />
+                            <Span Text="{Binding VisibleItems, Source={x:Reference ZodiacsList}, Converter={StaticResource ListToStringSeparatedConverter}}" />
+                            <Span Text="{x:Static system:Environment.NewLine}" />
+                            <Span Text="Visible Views: " />
+                            <Span Text="{Binding VisibleViews, Source={x:Reference ZodiacsList}, Converter={StaticResource ListToStringSeparatedConverter}}" />
+                            <Span Text="{x:Static system:Environment.NewLine}" />
+                            <Span Text="Visible Indexes: " />
+                            <Span Text="{Binding VisibleIndexes, Source={x:Reference ZodiacsList}, Converter={StaticResource ListToStringSeparatedConverter}}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <HorizontalStackLayout
+                    Grid.Row="2"
+                    Grid.Column="0">
+                    <Label Text="Is Scrolling Enabled: " />
+                    <Switch
+                        IsToggled="{Binding IsScrollingEnabled, Source={x:Reference ZodiacsList}}"/>
+                </HorizontalStackLayout>
+                <Button
+                    x:Name="ScrollToPreviousButton"
+                    IsEnabled="{Binding CanScrollToPreviousItem, Source={x:Reference ZodiacsList}}"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Clicked="ScrollToPreviousButton_Clicked"
+                    Text="Scroll to previous"/>
+                <Button
+                    x:Name="ScrollToNextButton"
+                    IsEnabled="{Binding CanScrollToNextItem, Source={x:Reference ZodiacsList}}"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Clicked="ScrollToNextButton_Clicked"
+                    Text="Scroll to next"/>
+                <Picker
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Title="Select Scroll Position"
+                    SelectedItem="{Binding ScrollToPosition, Mode=TwoWay}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type ScrollToPosition}">
+                            <x:Static Member="ScrollToPosition.MakeVisible" />
+                            <x:Static Member="ScrollToPosition.Start" />
+                            <x:Static Member="ScrollToPosition.Center" />
+                            <x:Static Member="ScrollToPosition.End" />
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <StackLayout
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    RadioButtonGroup.GroupName="animated"
+                    RadioButtonGroup.SelectedValue="{Binding Animated, Converter={x:StaticResource StringToBooleanConverter}}"
+                    Orientation="Horizontal">
+                    <Label Text="Animated: " />
+                    <RadioButton
+                        Content="Yes"
+                        Value="True"/>
+                    <RadioButton
+                        Content="No"
+                        Value="False"/>
+                </StackLayout>
+            </Grid>
+            <rc:RcListView
+                x:Name="ZodiacsList"
+                Orientation="{Binding Orientation}"
+                Spacing="{Binding Spacing}">
+                <rc:RcListView.Items>
+                    <zodiacs:AriesView />
+                    <zodiacs:TaurusView />
+                    <zodiacs:GeminiView />
+                    <zodiacs:CancerView />
+                    <zodiacs:LeoView />
+                    <zodiacs:VirgoView />
+                    <zodiacs:LibraView />
+                    <zodiacs:ScorpioView />
+                    <zodiacs:SagittariusView />
+                    <zodiacs:CapricornView />
+                    <zodiacs:AquariusView />
+                    <zodiacs:PiscesView />
+                </rc:RcListView.Items>
+            </rc:RcListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
