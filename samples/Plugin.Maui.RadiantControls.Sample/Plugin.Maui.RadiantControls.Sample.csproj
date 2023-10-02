@@ -49,7 +49,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -75,12 +75,18 @@
 	  <None Remove="Resources\Images\virgo.svg" />
 	  <None Remove="Views\" />
 	  <None Remove="Converters\" />
+	  <None Remove="Pages\Docs\" />
+	  <None Remove="Pages\Showcases\" />
+	  <None Remove="Pages\Playgrounds\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Resources\Images\" />
 	  <Folder Include="Pages\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Converters\" />
+	  <Folder Include="Pages\Docs\" />
+	  <Folder Include="Pages\Showcases\" />
+	  <Folder Include="Pages\Playgrounds\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\avatar.jpeg" />

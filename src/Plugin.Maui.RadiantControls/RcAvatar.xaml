@@ -3,18 +3,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Plugin.Maui.RadiantControls.RcAvatar"
-    Loaded="RcContentView_Loaded">
+    x:Name="Self"
+    Loaded="RcContentView_Loaded"
+    BindingContextChanged="Self_BindingContextChanged">
     <Grid
         HorizontalOptions="Start"
         VerticalOptions="Start">
         <Frame
             x:Name="ContainerFrame"
             HorizontalOptions="Start"
-            Padding="{Binding AvatarPadding}"
-            WidthRequest="{Binding Size}"
-            HeightRequest="{Binding Size}"
-            BorderColor="{Binding BadgeBorderColor}"
-            BackgroundColor="{Binding ContainerBackgroundColor}"
+            Padding="{Binding AvatarPadding, Source={x:Reference Self}}"
+            WidthRequest="{Binding Size, Source={x:Reference Self}}"
+            HeightRequest="{Binding Size, Source={x:Reference Self}}"
+            BackgroundColor="{Binding ContainerBackgroundColor, Source={x:Reference Self}}"
             IsClippedToBounds="True">
             <Grid
                 IsClippedToBounds="True">
@@ -25,37 +26,44 @@
                     HorizontalOptions="Fill"
                     VerticalTextAlignment="Center"
                     HorizontalTextAlignment="Center"
-                    Text="{Binding Initials}"
-                    TextTransform="{Binding InitialsLabelStyle.TextTransform}"
-                    LineBreakMode="{Binding InitialsLabelStyle.LineBreakMode}"
-                    TextColor="{Binding InitialsLabelStyle.TextColor}"
-                    CharacterSpacing="{Binding InitialsLabelStyle.CharacterSpacing}"
-                    FontAttributes="{Binding InitialsLabelStyle.FontAttributes}"
-                    TextDecorations="{Binding InitialsLabelStyle.TextDecorations}"
-                    FontFamily="{Binding InitialsLabelStyle.FontFamily}"
-                    FontSize="{Binding InitialsLabelStyle.FontSize}"
-                    FontAutoScalingEnabled="{Binding InitialsLabelStyle.FontAutoScalingEnabled}"
-                    LineHeight="{Binding InitialsLabelStyle.LineHeight}"
-                    MaxLines="{Binding InitialsLabelStyle.MaxLines}"
-                    Padding="{Binding InitialsLabelStyle.Padding}"
-                    TextType="{Binding InitialsLabelStyle.TextType}" />
+                    Text="{Binding Initials, Source={x:Reference Self}}"
+                    TextTransform="{Binding InitialsLabelStyle.TextTransform, Source={x:Reference Self}}"
+                    LineBreakMode="{Binding InitialsLabelStyle.LineBreakMode, Source={x:Reference Self}}"
+                    TextColor="{Binding InitialsLabelStyle.TextColor, Source={x:Reference Self}}"
+                    CharacterSpacing="{Binding InitialsLabelStyle.CharacterSpacing, Source={x:Reference Self}}"
+                    FontAttributes="{Binding InitialsLabelStyle.FontAttributes, Source={x:Reference Self}}"
+                    TextDecorations="{Binding InitialsLabelStyle.TextDecorations, Source={x:Reference Self}}"
+                    FontFamily="{Binding InitialsLabelStyle.FontFamily, Source={x:Reference Self}}"
+                    FontSize="{Binding InitialsLabelStyle.FontSize, Source={x:Reference Self}}"
+                    FontAutoScalingEnabled="{Binding InitialsLabelStyle.FontAutoScalingEnabled, Source={x:Reference Self}}"
+                    LineHeight="{Binding InitialsLabelStyle.LineHeight, Source={x:Reference Self}}"
+                    MaxLines="{Binding InitialsLabelStyle.MaxLines, Source={x:Reference Self}}"
+                    Padding="{Binding InitialsLabelStyle.Padding, Source={x:Reference Self}}"
+                    TextType="{Binding InitialsLabelStyle.TextType, Source={x:Reference Self}}" />
                 <Image
-                    x:Name="AvatarImage"/>
+                    x:Name="AvatarImage"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    Aspect="AspectFill"/>
             </Grid>
         </Frame>
         <Frame
             x:Name="OuterBadgeFrame"
-            IsVisible="{Binding HasBadge}"
+            IsVisible="{Binding HasBadge, Source={x:Reference Self}}"
             BorderColor="Transparent"
-            BackgroundColor="White"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            BackgroundColor="{Binding BadgeBorderColor, Source={x:Reference Self}}"
             SizeChanged="OuterBadgeFrame_SizeChanged">
             <Frame
                 x:Name="InnerBadgeFrame"
-                Padding="{Binding BadgePadding}"
+                WidthRequest="{Binding BadgeSize, Source={x:Reference Self}}"
+                HeightRequest="{Binding BadgeSize, Source={x:Reference Self}}"
+                Padding="{Binding BadgePadding, Source={x:Reference Self}}"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 BorderColor="Transparent"
-                BackgroundColor="{Binding BadgeBackgroundColor}"
+                BackgroundColor="{Binding BadgeBackgroundColor, Source={x:Reference Self}}"
                 SizeChanged="InnerBadgeFrame_SizeChanged">
                 <Label
                     x:Name="BadgeLabel"
@@ -63,20 +71,21 @@
                     VerticalOptions="Center"
                     HorizontalTextAlignment="Center"
                     VerticalTextAlignment="Center"
-                    Text="{Binding BadgeText}"
-                    TextTransform="{Binding BadgeLabelStyle.TextTransform}"
-                    LineBreakMode="{Binding BadgeLabelStyle.LineBreakMode}"
-                    TextColor="{Binding BadgeLabelStyle.TextColor}"
-                    CharacterSpacing="{Binding BadgeLabelStyle.CharacterSpacing}"
-                    FontAttributes="{Binding BadgeLabelStyle.FontAttributes}"
-                    TextDecorations="{Binding BadgeLabelStyle.TextDecorations}"
-                    FontFamily="{Binding BadgeLabelStyle.FontFamily}"
-                    FontSize="{Binding BadgeLabelStyle.FontSize}"
-                    FontAutoScalingEnabled="{Binding BadgeLabelStyle.FontAutoScalingEnabled}"
-                    LineHeight="{Binding BadgeLabelStyle.LineHeight}"
-                    MaxLines="{Binding BadgeLabelStyle.MaxLines}"
-                    Padding="{Binding BadgeLabelStyle.Padding}"
-                    TextType="{Binding BadgeLabelStyle.TextType}" 
+                    BindingContext="{Binding BadgeLabelStyle, Source={x:Reference Self}}"
+                    Text="{Binding BadgeText, Source={x:Reference Self}}"
+                    TextTransform="{Binding BadgeLabelStyle.TextTransform, Source={x:Reference Self}}"
+                    LineBreakMode="{Binding BadgeLabelStyle.LineBreakMode, Source={x:Reference Self}}"
+                    TextColor="{Binding BadgeLabelStyle.TextColor, Source={x:Reference Self}}"
+                    CharacterSpacing="{Binding BadgeLabelStyle.CharacterSpacing, Source={x:Reference Self}}"
+                    FontAttributes="{Binding BadgeLabelStyle.FontAttributes, Source={x:Reference Self}}"
+                    TextDecorations="{Binding BadgeLabelStyle.TextDecorations, Source={x:Reference Self}}"
+                    FontFamily="{Binding BadgeLabelStyle.FontFamily, Source={x:Reference Self}}"
+                    FontSize="{Binding BadgeLabelStyle.FontSize, Source={x:Reference Self}}"
+                    FontAutoScalingEnabled="{Binding BadgeLabelStyle.FontAutoScalingEnabled, Source={x:Reference Self}}"
+                    LineHeight="{Binding BadgeLabelStyle.LineHeight, Source={x:Reference Self}}"
+                    MaxLines="{Binding BadgeLabelStyle.MaxLines, Source={x:Reference Self}}"
+                    Padding="{Binding BadgeLabelStyle.Padding, Source={x:Reference Self}}"
+                    TextType="{Binding BadgeLabelStyle.TextType, Source={x:Reference Self}}" 
                     SizeChanged="BadgeLabel_SizeChanged"/>
             </Frame>
         </Frame>

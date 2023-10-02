@@ -5,7 +5,7 @@
     xmlns:rc="clr-namespace:Plugin.Maui.RadiantControls;assembly=Plugin.Maui.RadiantControls"
     xmlns:zodiacs="clr-namespace:Plugin.Maui.RadiantControls.Sample.Views.Zodiacs"
     xmlns:system="clr-namespace:System;assembly=netstandard"
-    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.ListViewPage"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Playgrounds.ListViewPlaygroundPage"
     Title="RcListView">
     <ScrollView>
         <StackLayout Padding="10">

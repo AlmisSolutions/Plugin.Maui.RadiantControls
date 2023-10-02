@@ -1,15 +1,15 @@
 ﻿using Microsoft.Maui.Controls;
 
-namespace Plugin.Maui.RadiantControls.Sample.Pages;
+namespace Plugin.Maui.RadiantControls.Sample.Pages.Playgrounds;
 
-public partial class ListViewPage : ContentPage
+public partial class ListViewPlaygroundPage : ContentPage
 {
     private int _spacing = 15;
     private StackOrientation _orientation = StackOrientation.Horizontal;
     private bool _animated;
     private ScrollToPosition _scrollToPosition;
 
-    public ListViewPage()
+    public ListViewPlaygroundPage()
 	{
 		InitializeComponent();
 

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Docs.AvatarDocPage"
+    Title="RcAvatar Docs">
+    <ScrollView>
+        <StackLayout Margin="15">
+            <Label
+                Text="RcAvatar"
+                FontSize="Title"
+                FontAttributes="Bold" />
+            <Label
+                Margin="0,10,0,10"
+                Text="The RcAvatar is a customizable avatar component that provides a visually appealing way to display user avatars."
+                FontSize="Body" />
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="10">
+                <Button
+                    x:Name="ShowcaseButton"
+                    Text="Showcase"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="ShowcaseButton_Clicked"/>
+                <Button
+                    x:Name="PlaygroundButton"
+                    Text="Playground"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="PlaygroundButton_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

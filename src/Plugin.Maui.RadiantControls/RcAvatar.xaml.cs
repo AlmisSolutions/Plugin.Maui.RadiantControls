@@ -37,7 +37,8 @@ public partial class RcAvatar : ContentView
         propertyName: nameof(CornerRadius),
         returnType: typeof(float),
         declaringType: typeof(RcAvatar),
-        defaultValue: default(float));
+        defaultValue: default(float),
+        propertyChanged: OnCornerRadiusChanged);
 
     /// <summary>
     /// Bindable property for the shape of the avatar, e.g., circle or square.
@@ -98,8 +99,7 @@ public partial class RcAvatar : ContentView
         defaultValueCreator: (bindable) => new RcLabelStyle
         {
             Padding = 10
-        },
-        propertyChanged: OnInitialsLabelStyleChanged);
+        });
 
     /// <summary>
     /// Bindable property for indicating whether the RcAvatar has a badge.
@@ -110,14 +110,22 @@ public partial class RcAvatar : ContentView
         declaringType: typeof(RcAvatar));
 
     /// <summary>
+    /// Bindable property for the size of the badge.
+    /// </summary>
+    public static readonly BindableProperty BadgeSizeProperty = BindableProperty.Create(
+        propertyName: nameof(BadgeSize),
+        returnType: typeof(double),
+        declaringType: typeof(RcAvatar),
+        defaultValue: -1.0);
+
+    /// <summary>
     /// Bindable property for the style of the badge label.
     /// </summary>
     public static readonly BindableProperty BadgeLabelStyleProperty = BindableProperty.Create(
         propertyName: nameof(BadgeLabelStyle),
         returnType: typeof(RcLabelStyle),
         declaringType: typeof(RcAvatar),
-        defaultValueCreator: (bindable) => new RcLabelStyle(),
-        propertyChanged: OnBadgeLabelStyleChanged);
+        defaultValueCreator: (bindable) => new RcLabelStyle());
 
     /// <summary>
     /// Bindable property for the padding of the inner badge.
@@ -126,7 +134,7 @@ public partial class RcAvatar : ContentView
         propertyName: nameof(BadgePadding),
         returnType: typeof(Thickness),
         declaringType: typeof(RcAvatar),
-        defaultValueCreator: (bindable) => default(Thickness),
+        defaultValue:   default(Thickness),
         propertyChanged: OnBadgePaddingChanged);
 
     /// <summary>
@@ -168,7 +176,7 @@ public partial class RcAvatar : ContentView
 
     #region Public properties
     /// <summary>
-    /// Margin around the avatar.
+    /// Padding around the avatar.
     /// </summary>
     public Thickness AvatarPadding
     {
@@ -186,7 +194,7 @@ public partial class RcAvatar : ContentView
     }
 
     /// <summary>
-    /// Shape of the avatar, e.g., circle or square.
+    /// Shape of the avatar.
     /// </summary>
     public AvatarShape Shape
     {
@@ -195,7 +203,7 @@ public partial class RcAvatar : ContentView
     }
 
     /// <summary>
-    /// Size of the avatar.
+    /// Corner radius of the avatar (ignored for <see cref="AvatarShape.Circle"/> or <see cref="AvatarShape.Square"/> shapes).
     /// </summary>
     public float CornerRadius
     {
@@ -258,12 +266,21 @@ public partial class RcAvatar : ContentView
     }
 
     /// <summary>
-    /// Gets or sets a value indicating whether the RcAvatar has a badge.
+    /// Indicates if the avatar has a badge.
     /// </summary>
     public bool HasBadge
     {
         get => (bool)GetValue(HasBadgeProperty);
         set => SetValue(HasBadgeProperty, value);
+    }
+
+    /// <summary>
+    /// Size of the badge.
+    /// </summary>
+    public double BadgeSize
+    {
+        get => (double)GetValue(BadgeSizeProperty);
+        set => SetValue(BadgeSizeProperty, value);
     }
 
     /// <summary>
@@ -285,7 +302,7 @@ public partial class RcAvatar : ContentView
     }
 
     /// <summary>
-    /// Gets or sets the text displayed on the avatar's badge.
+    /// Text displayed on the avatar's badge.
     /// </summary>
     public string BadgeText
     {
@@ -294,7 +311,7 @@ public partial class RcAvatar : ContentView
     }
 
     /// <summary>
-    /// Gets or sets the background color of the avatar's badge.
+    /// Background color of the avatar's badge.
     /// </summary>
     public Color BadgeBackgroundColor
     {
@@ -303,7 +320,7 @@ public partial class RcAvatar : ContentView
     }
 
     /// <summary>
-    /// Gets or sets the border color of the avatar's badge.
+    /// Border color of the avatar's badge.
     /// </summary>
     public Color BadgeBorderColor
     {
@@ -314,16 +331,11 @@ public partial class RcAvatar : ContentView
 
     #region Constructor
     /// <summary>
-    /// Initializes a new instance of the RcAvatar class.
+    /// Initializes a new instance of the <see cref="RcAvatar"/> class.
     /// </summary>
     public RcAvatar()
     {
         InitializeComponent();
-
-        BindingContext = this;
-
-        SetOuterBadgePadding();
-        SetBadgePosition(BadgePosition);
     }
     #endregion
 
@@ -408,7 +420,7 @@ public partial class RcAvatar : ContentView
         {
             avatar.SetImageSize(size);
             avatar.SetCornerRadius(size);
-            avatar.SetInitialBadgePadding(size);
+            //avatar.SetInitialBadgePadding(size);
         }
     }
 
@@ -432,49 +444,37 @@ public partial class RcAvatar : ContentView
     /// <param name="bindable">The bindable object whose badge padding has changed.</param>
     /// <param name="oldValue">The previous badge padding value.</param>
     /// <param name="newValue">The updated badge padding value.</param>
-    private static void OnBadgePositionChanged(BindableObject bindable, object oldValue, object newValue)
+    private static async void OnBadgePositionChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is RcAvatar avatar && newValue is BadgePosition badgePosition)
         {
-            avatar.SetBadgePosition(badgePosition);
+            await avatar.SetBadgePosition(badgePosition);
         }
     }
 
     /// <summary>
-    /// Adjusts the font size of the initials label when its style changes. If the label's font size isn't set (i.e., it's 0 or negative), it defaults to a quarter of the avatar's size.
-    /// </summary>
-    /// <param name="bindable">The bindable object that has changed.</param>
-    /// <param name="oldValue">The old value of the property.</param>
-    /// <param name="newValue">The new value of the property.</param>
-    private static void OnInitialsLabelStyleChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is RcAvatar avatar && newValue is RcLabelStyle labelStyle)
-        {
-            avatar.SetInitialsSize(labelStyle);
-        }
-    }
-
-    /// <summary>
-    /// Adjusts the font size of the badge label when its style changes. If the label's font size isn't set (i.e., it's 0 or negative), it defaults to a quarter of the avatar's size.
-    /// </summary>
-    /// <param name="bindable">The bindable object that has changed.</param>
-    /// <param name="oldValue">The old value of the property.</param>
-    /// <param name="newValue">The new value of the property.</param>
-    private static void OnBadgeLabelStyleChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is RcAvatar avatar && newValue is RcLabelStyle labelStyle)
-        {
-            labelStyle.FontSize = labelStyle.FontSize > 0 ? labelStyle.FontSize : avatar.Size / 6;
-        }
-    }
-
-    /// <summary>
-    /// Handles changes to the Shape bindable property. Updates the corner radius based on the new shape.
+    /// Handles changes to the Shape bindable property.
+    /// Updates the corner radius based on the new shape.
     /// </summary>
     /// <param name="bindable">The bindable object that has changed.</param>
     /// <param name="oldValue">The old value of the property.</param>
     /// <param name="newValue">The new value of the property.</param>
     private static void OnShapeChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is RcAvatar avatar)
+        {
+            avatar.SetCornerRadius(avatar.Size);
+        }
+    }
+
+    /// <summary>
+    /// Handles changes to the CornerRadius bindable property.
+    /// Updates the corner radius if the shape is supported.
+    /// </summary>
+    /// <param name="bindable">The bindable object that has changed.</param>
+    /// <param name="oldValue">The old value of the property.</param>
+    /// <param name="newValue">The new value of the property.</param>
+    private static void OnCornerRadiusChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is RcAvatar avatar)
         {
@@ -530,47 +530,27 @@ public partial class RcAvatar : ContentView
     }
 
     /// <summary>
-    /// Adjusts the outer badge radius size when the frame's size changes.
+    /// Adjusts the outer badge radius size and position when the frame's size changes.
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The event arguments.</param>
     private async void OuterBadgeFrame_SizeChanged(object sender, EventArgs e)
     {
-        OuterBadgeFrame.CornerRadius = (float)OuterBadgeFrame.Width / 2;
-        var divider = 6;
+        OuterBadgeFrame.CornerRadius = (float)OuterBadgeFrame.Width / 2f;
 
-        if (BadgePosition == BadgePosition.TopLeft)
-        {
-            await OuterBadgeFrame.TranslateTo(-OuterBadgeFrame.Width / divider, -OuterBadgeFrame.Height / divider);
-        }
-        else if (BadgePosition == BadgePosition.TopCenter)
-        {
-            await OuterBadgeFrame.TranslateTo(0, -OuterBadgeFrame.Height / divider);
-        }
-        else if (BadgePosition == BadgePosition.TopRight)
-        {
-            await OuterBadgeFrame.TranslateTo(OuterBadgeFrame.Width / divider, -OuterBadgeFrame.Height / divider);
-        }
-        else if (BadgePosition == BadgePosition.CenterLeft)
-        {
-            await OuterBadgeFrame.TranslateTo(-OuterBadgeFrame.Width / divider, 0);
-        }
-        else if (BadgePosition == BadgePosition.CenterRight)
-        {
-            await OuterBadgeFrame.TranslateTo(OuterBadgeFrame.Width / divider, 0);
-        }
-        else if (BadgePosition == BadgePosition.BottomLeft)
-        {
-            await OuterBadgeFrame.TranslateTo(-OuterBadgeFrame.Width / divider, OuterBadgeFrame.Height / divider);
-        }
-        else if (BadgePosition == BadgePosition.BottomCenter)
-        {
-            await OuterBadgeFrame.TranslateTo(0, -OuterBadgeFrame.Height / divider);
-        }
-        else if (BadgePosition == BadgePosition.BottomRight)
-        {
-            await OuterBadgeFrame.TranslateTo(OuterBadgeFrame.Width / divider, OuterBadgeFrame.Height / divider);
-        }
+        SetOuterBadgePadding();
+        await SetBadgePosition(BadgePosition);
+    }
+
+    /// <summary>
+    /// Passes the BindingContext to child elements when it changes.
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="e">Event arguments.</param>
+    private void Self_BindingContextChanged(object sender, EventArgs e)
+    {
+        InitialsLabelStyle.BindingContext = BindingContext;
+        BadgeLabelStyle.BindingContext = BindingContext;
     }
     #endregion
 
@@ -590,67 +570,112 @@ public partial class RcAvatar : ContentView
     /// <param name="innerBadgePadding">The padding values for the inner badge.</param>
     private void SetOuterBadgePadding()
     {
-        var padding = GetBadgePaddingBasedOnSize() / 3f;
+        var padding = InnerBadgeFrame.Width / 8f;
 
         OuterBadgeFrame.Padding = new Thickness(padding);
     }
 
     /// <summary>
-    /// Sets the badge's position within the parent container based on the specified badge position.
+    /// Sets the badge's position within the parent container based on the specified <see cref="BadgePosition"/>.
     /// </summary>
     /// <param name="badgePosition">The desired position of the badge within its parent container.</param>
-    private async void SetBadgePosition(BadgePosition badgePosition)
+    /// <returns>A Task representing the asynchronous operation.</returns>
+    private async Task SetBadgePosition(BadgePosition badgePosition)
     {
-        await _viewLoadedTcs.Task;
+        (var x, var y) = CalculateBadgePosition(badgePosition);
 
-        if (badgePosition == BadgePosition.TopLeft)
+        await OuterBadgeFrame.TranslateTo(x, y);
+    }
+
+    /// <summary>
+    /// Determines the (x, y) coordinates for the badge based on its position.
+    /// </summary>
+    private (double, double) CalculateBadgePosition(BadgePosition badgePosition)
+    {
+        return IsCornerPosition(badgePosition)
+            ? CalculateCornerPosition(badgePosition)
+            : CalculateCenterPosition(badgePosition);
+    }
+
+    /// <summary>
+    /// Checks if the badge position is one of the corners.
+    /// </summary>
+    private bool IsCornerPosition(BadgePosition badgePosition)
+    {
+        return badgePosition == BadgePosition.TopLeft ||
+               badgePosition == BadgePosition.BottomLeft ||
+               badgePosition == BadgePosition.TopRight ||
+               badgePosition == BadgePosition.BottomRight;
+    }
+
+    /// <summary>
+    /// Calculates the (x, y) coordinates for corner badge positions.
+    /// </summary>
+    private (double, double) CalculateCornerPosition(BadgePosition badgePosition)
+    {
+        var distance = CalculateDistance();
+        var radiusToMove = Math.Sqrt(distance * distance / 2) + OuterbadgeRadius() / 2;
+        return GetXYForCornerPosition(radiusToMove, badgePosition);
+    }
+
+    /// <summary>
+    /// Calculates the (x, y) coordinates for center badge positions.
+    /// </summary>
+    private (double, double) CalculateCenterPosition(BadgePosition badgePosition)
+    {
+        var radiusToMove = CalculateDistance() + OuterbadgeRadius() / 1.5;
+        return GetXYForCenterPosition(radiusToMove, badgePosition);
+    }
+
+    /// <summary>
+    /// Calculates the distance between the big circle and small circle centers.
+    /// </summary>
+    private double CalculateDistance()
+    {
+        return AvatarRadius() - OuterbadgeRadius();
+    }
+
+    /// <summary>
+    /// Gets the avatar radius.
+    /// </summary>
+    private double AvatarRadius()
+    {
+        return Size / 2;
+    }
+
+    /// <summary>
+    /// Gets the outer badge radius.
+    /// </summary>
+    private double OuterbadgeRadius()
+    {
+        return OuterBadgeFrame.Width / 2;
+    }
+
+    /// <summary>
+    /// Gets the (x, y) coordinates for the badge for corner positions.
+    /// </summary>
+    private (double, double) GetXYForCornerPosition(double radiusToMove, BadgePosition badgePosition)
+    {
+        double x = badgePosition == BadgePosition.TopLeft || badgePosition == BadgePosition.BottomLeft ? -radiusToMove : radiusToMove;
+        double y = badgePosition == BadgePosition.TopLeft || badgePosition == BadgePosition.TopRight ? -radiusToMove : radiusToMove;
+        return (x, y);
+    }
+
+    /// <summary>
+    /// Gets the (x, y) coordinates for the badge for center positions.
+    /// </summary>
+    private (double, double) GetXYForCenterPosition(double radiusToMove, BadgePosition badgePosition)
+    {
+        double x = 0, y = 0;
+        if (badgePosition == BadgePosition.TopCenter || badgePosition == BadgePosition.BottomCenter)
         {
-            OuterBadgeFrame.VerticalOptions = LayoutOptions.Start;
-            OuterBadgeFrame.HorizontalOptions = LayoutOptions.Start;
-            //await OuterBadgeFrame.TranslateTo(-BadgePadding.Left, -BadgePadding.Top);
+            y = badgePosition == BadgePosition.TopCenter ? -radiusToMove : radiusToMove;
         }
-        else if (badgePosition == BadgePosition.TopCenter)
+        else if (badgePosition == BadgePosition.CenterLeft || badgePosition == BadgePosition.CenterRight)
         {
-            OuterBadgeFrame.VerticalOptions = LayoutOptions.Start;
-            OuterBadgeFrame.HorizontalOptions = LayoutOptions.Center;
-            //await OuterBadgeFrame.TranslateTo(0, -BadgePadding.Top);
+            x = badgePosition == BadgePosition.CenterLeft ? -radiusToMove : radiusToMove;
         }
-        else if (badgePosition == BadgePosition.TopRight)
-        {
-            OuterBadgeFrame.VerticalOptions = LayoutOptions.Start;
-            OuterBadgeFrame.HorizontalOptions = LayoutOptions.End;
-            //await OuterBadgeFrame.TranslateTo(BadgePadding.Right, -BadgePadding.Top);
-        }
-        else if (badgePosition == BadgePosition.CenterLeft)
-        {
-            OuterBadgeFrame.VerticalOptions = LayoutOptions.Center;
-            OuterBadgeFrame.HorizontalOptions = LayoutOptions.Start;
-            //await OuterBadgeFrame.TranslateTo(-BadgePadding.Left, 0);
-        }
-        else if (badgePosition == BadgePosition.CenterRight)
-        {
-            OuterBadgeFrame.VerticalOptions = LayoutOptions.Center;
-            OuterBadgeFrame.HorizontalOptions = LayoutOptions.End;
-            //await OuterBadgeFrame.TranslateTo(BadgePadding.Right, 0);
-        }
-        else if (badgePosition == BadgePosition.BottomLeft)
-        {
-            OuterBadgeFrame.VerticalOptions = LayoutOptions.End;
-            OuterBadgeFrame.HorizontalOptions = LayoutOptions.Start;
-            //await OuterBadgeFrame.TranslateTo(-BadgePadding.Left, BadgePadding.Bottom);
-        }
-        else if (badgePosition == BadgePosition.BottomCenter)
-        {
-            OuterBadgeFrame.VerticalOptions = LayoutOptions.End;
-            OuterBadgeFrame.HorizontalOptions = LayoutOptions.Center;
-            //await OuterBadgeFrame.TranslateTo(0, -BadgePadding.Bottom);
-        }
-        else if (badgePosition == BadgePosition.BottomRight)
-        {
-            OuterBadgeFrame.VerticalOptions = LayoutOptions.End;
-            OuterBadgeFrame.HorizontalOptions = LayoutOptions.End;
-            //await OuterBadgeFrame.TranslateTo(BadgePadding.Right, BadgePadding.Bottom);
-        }
+        return (x, y);
     }
 
     /// <summary>
@@ -659,6 +684,11 @@ public partial class RcAvatar : ContentView
     /// <param name="size">The size of the avatar.</param>
     private void SetCornerRadius(double size)
     {
+        if (size < 1)
+        {
+            return;
+        }
+
         if (Shape == AvatarShape.Circle)
         {
             ContainerFrame.CornerRadius = (float)size / 2.0f;
@@ -671,41 +701,6 @@ public partial class RcAvatar : ContentView
         {
             ContainerFrame.CornerRadius = 0f;
         }
-    }
-
-    private void SetInitialBadgePadding(double size)
-    {
-        if (BadgePadding.IsEmpty)
-        {
-            if (string.IsNullOrWhiteSpace(BadgeText))
-            {
-                BadgePadding = GetBadgePaddingBasedOnSize();
-            }
-            else
-            {
-                BadgePadding = (float)size / 12f;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Sets the font size for the initials label based on the provided size.
-    /// If the font size is already set (greater than 0), it retains the current value.
-    /// Otherwise, it sets the font size to a quarter of the provided size.
-    /// </summary>
-    private void SetInitialsSize(RcLabelStyle labelStyle)
-    {
-        labelStyle.FontSize = labelStyle.FontSize > 0
-            ? labelStyle.FontSize : Size / 4;
-    }
-
-    /// <summary>
-    /// Calculates the padding for the badge based on the size.
-    /// </summary>
-    /// <returns>The calculated padding for the badge.</returns>
-    private float GetBadgePaddingBasedOnSize()
-    {
-        return (float)Size / 8f;
     }
     #endregion
 }

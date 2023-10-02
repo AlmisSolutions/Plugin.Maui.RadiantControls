@@ -33,7 +33,7 @@ public partial class RcAvatarGroup : ContentView
 
     #region Public bindable properties
     /// <summary>
-    /// Gets or sets the avatars collection.
+    /// Avatars collection.
     /// </summary>
     public ObservableCollection<RcAvatar> Avatars
     {
@@ -42,7 +42,7 @@ public partial class RcAvatarGroup : ContentView
     }
 
     /// <summary>
-    /// Gets or sets the stack direction.
+    /// Stack direction of the avatar group.
     /// </summary>
     public StackDirection StackDirection
     {
@@ -228,7 +228,7 @@ public partial class RcAvatarGroup : ContentView
         AvatarGroup.RotateYTo(180);
     }
 
-    void AvatarGroup_Loaded(object sender, EventArgs e)
+    private void AvatarGroup_Loaded(object sender, EventArgs e)
     {
         if (StackDirection == StackDirection.BottomToTop)
         {

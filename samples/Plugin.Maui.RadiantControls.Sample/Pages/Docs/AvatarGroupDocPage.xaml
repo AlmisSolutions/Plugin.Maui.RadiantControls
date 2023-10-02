@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Docs.AvatarGroupDocPage"
+    Title="RcAvatarGroup Docs">
+    <ScrollView>
+        <StackLayout>
+            <Label
+                Text="RcAvatarGroup"
+                FontSize="Title"
+                FontAttributes="Bold" />
+            <Label
+                Margin="0,10,0,0"
+                Text="The RcAvatarGroup is a component that represents a group of RcAvatar displayed in a stack."
+                FontSize="Body" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -12,6 +12,8 @@
             </ResourceDictionary.MergedDictionaries>
             <converters:ListToStringSeparatedConverter x:Key="ListToStringSeparatedConverter" />
             <converters:StringToBooleanConverter x:Key="StringToBooleanConverter" />
+            <converters:StringToThicknessConverter x:Key="StringToThicknessConverter" />
+            <converters:StringToColorConverter x:Key="StringToColorConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

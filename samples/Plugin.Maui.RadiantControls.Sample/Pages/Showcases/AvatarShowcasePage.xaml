@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rc="clr-namespace:Plugin.Maui.RadiantControls;assembly=Plugin.Maui.RadiantControls"
-    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.AvatarPage"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Showcases.AvatarShowcasePage"
     Title="RcAvatar and RcAvatarGroup">
     <ScrollView>
         <VerticalStackLayout

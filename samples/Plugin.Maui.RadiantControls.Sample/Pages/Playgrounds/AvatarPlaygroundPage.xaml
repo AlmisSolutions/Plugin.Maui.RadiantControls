@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rc="clr-namespace:Plugin.Maui.RadiantControls;assembly=Plugin.Maui.RadiantControls"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Playgrounds.AvatarPlaygroundPage"
+    x:Name="Self"
+    Title="RcAvatar Playground">
+    <ScrollView>
+        <StackLayout
+            Padding="15">
+            <Grid
+                RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10"
+                RowSpacing="10">
+                <!--#region Row 1-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="0"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Size: " />
+                    <Entry
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Numeric"
+                        Placeholder="Size"
+                        Text="{Binding Size, Mode=TwoWay}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Shape: " />
+                    <Picker
+                        Grid.Column="1"
+                        Title="Select Shape"
+                        SelectedItem="{Binding Shape, Mode=TwoWay}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type rc:AvatarShape}">
+                                <x:Static Member="rc:AvatarShape.Circle" />
+                                <x:Static Member="rc:AvatarShape.RoundedSquare" />
+                                <x:Static Member="rc:AvatarShape.Square" />
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 2-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="1"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Corner Radius: " />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Numeric"
+                        Placeholder="Corner Radius"
+                        Text="{Binding CornerRadius, Mode=TwoWay}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="1"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Avatar Padding: " />
+                    <Entry
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Avatar Padding"
+                        Text="{Binding AvatarPadding, Mode=TwoWay}" />
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 3-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="2"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Container Background Color: " />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Default"
+                        Placeholder="Container Background Color"
+                        Text="{Binding ContainerBackgroundColor}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="2"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Initials: " />
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Keyboard="Default"
+                        Placeholder="Initials"
+                        Text="{Binding Initials}" />
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 4-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="3"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Initials Font Size: " />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Numeric"
+                        Placeholder="Initials Font Size"
+                        Text="{Binding InitialsFontSize}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="3"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Initials Text Color: " />
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Keyboard="Default"
+                        Placeholder="Initials Text Color"
+                        Text="{Binding InitialsTextColor}" />
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 5-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="4"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Has Badge: " />
+                    <Switch
+                        Grid.Column="1"
+                        VerticalOptions="Center"
+                        IsToggled="{Binding HasBadge}"/>
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 6-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="5"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Badge Size: " />
+                    <Entry
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Badge Size"
+                        Text="{Binding BadgeSize, Mode=TwoWay}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="5"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Badge Padding: " />
+                    <Entry
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Badge Padding"
+                        Text="{Binding BadgePadding, Mode=TwoWay}" />
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 7-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="6"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Badge Background Color: " />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Default"
+                        Placeholder="Badge Background Color"
+                        Text="{Binding BadgeBackgroundColor}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="6"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Badge Border Color: " />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Default"
+                        Placeholder="Badge Border Color"
+                        Text="{Binding BadgeBorderColor}" />
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 8-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="7"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Badge Font Size: " />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Numeric"
+                        Placeholder="Badge Font Size"
+                        Text="{Binding BadgeFontSize}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="7"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Badge Text Color: " />
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Keyboard="Default"
+                        Placeholder="Badge Text Color"
+                        Text="{Binding BadgeTextColor}" />
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 9-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="8"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Badge Position: " />
+                    <Picker
+                        Grid.Column="1"
+                        Title="Select Badge Position"
+                        SelectedItem="{Binding BadgePosition, Mode=TwoWay}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type rc:BadgePosition}">
+                                <x:Static Member="rc:BadgePosition.TopLeft" />
+                                <x:Static Member="rc:BadgePosition.TopCenter" />
+                                <x:Static Member="rc:BadgePosition.TopRight" />
+                                <x:Static Member="rc:BadgePosition.CenterLeft" />
+                                <x:Static Member="rc:BadgePosition.CenterRight" />
+                                <x:Static Member="rc:BadgePosition.BottomLeft" />
+                                <x:Static Member="rc:BadgePosition.BottomCenter" />
+                                <x:Static Member="rc:BadgePosition.BottomRight" />
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="8"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Badge Text: " />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Default"
+                        Placeholder="Badge Text"
+                        Text="{Binding BadgeText}" />
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 10-->
+                <Button
+                    x:Name="RandomImageButton"
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    Text="Set random image"
+                    Clicked="RandomImageButton_Clicked"/>
+                <Button
+                    x:Name="PlaceholderImageButton"
+                    Grid.Row="9"
+                    Grid.Column="1"
+                    Text="Set placeholder image"
+                    Clicked="PlaceholderImageButton_Clicked"/>
+                <!--#endregion-->
+            </Grid>
+            <rc:RcAvatar
+                Margin="0,30,0,0"
+                HorizontalOptions="Center"
+                Size="{Binding Size}"
+                ImageSource="{Binding ImageUrl}"
+                PlaceholderImageSource="{Binding PlaceholderImageUrl}"
+                Shape="{Binding Shape}"
+                CornerRadius="{Binding CornerRadius}"
+                AvatarPadding="{Binding AvatarPadding, Converter={StaticResource StringToThicknessConverter}}"
+                ContainerBackgroundColor="{Binding ContainerBackgroundColor, Converter={StaticResource StringToColorConverter}}"
+                HasBadge="{Binding HasBadge}"
+                Initials="{Binding Initials}"
+                BadgeSize="{Binding BadgeSize}"
+                BadgePadding="{Binding BadgePadding, Converter={StaticResource StringToThicknessConverter}}"
+                BadgeBackgroundColor="{Binding BadgeBackgroundColor, Converter={StaticResource StringToColorConverter}}"
+                BadgeBorderColor="{Binding BadgeBorderColor, Converter={StaticResource StringToColorConverter}}"
+                BadgePosition="{Binding BadgePosition}"
+                BadgeText="{Binding BadgeText}">
+                <rc:RcAvatar.InitialsLabelStyle>
+                    <rc:RcLabelStyle
+                        FontSize="{Binding InitialsFontSize}"
+                        TextColor="{Binding InitialsTextColor, Converter={StaticResource StringToColorConverter}}"/>
+                </rc:RcAvatar.InitialsLabelStyle>
+                <rc:RcAvatar.BadgeLabelStyle>
+                    <rc:RcLabelStyle
+                        FontSize="{Binding BadgeFontSize}"
+                        TextColor="{Binding BadgeTextColor, Converter={StaticResource StringToColorConverter}}"/>
+                </rc:RcAvatar.BadgeLabelStyle>
+            </rc:RcAvatar>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
