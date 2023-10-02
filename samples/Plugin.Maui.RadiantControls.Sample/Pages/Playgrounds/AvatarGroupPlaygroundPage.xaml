@@ -1,12 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Playgrounds.AvatarGroupPlaygroundPage"
-             Title="AvatarGroupPlaygroundPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rc="clr-namespace:Plugin.Maui.RadiantControls;assembly=Plugin.Maui.RadiantControls"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Playgrounds.AvatarGroupPlaygroundPage"
+    x:Name="Self"
+    Title="Avatar Group Playground">
+    <ScrollView>
+        <StackLayout>
+            <Grid
+                RowDefinitions="Auto,Auto"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10"
+                RowSpacing="10">
+                <!--#region Row 1-->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="0"
+                    Grid.Column="0">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="No of Avatars: " />
+                    <Entry
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Numeric"
+                        Placeholder="No of Avatars"
+                        Text="{Binding AvatarsCount, Mode=TwoWay}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    <Label
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="Stack Direction: " />
+                    <Picker
+                        Grid.Column="1"
+                        Title="Select Stack Direction"
+                        SelectedItem="{Binding StackDirection, Mode=TwoWay}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type rc:StackDirection}">
+                                <x:Static Member="rc:StackDirection.BottomToTop" />
+                                <x:Static Member="rc:StackDirection.TopToBottom" />
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+                <!--#endregion-->
+                <!--#region Row 2-->
+                <Button
+                    x:Name="GenerateAvatars"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Generate random avatars"
+                    Clicked="GenerateAvatars_Clicked"/>
+                <!--#endregion-->
+            </Grid>
+            
+            <rc:RcAvatarGroup
+                Margin="0,30,0,0"
+                HorizontalOptions="Center"
+                Avatars="{Binding Avatars}"
+                StackDirection="{Binding StackDirection}">
+            </rc:RcAvatarGroup>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -28,7 +28,7 @@ public partial class RcAvatarGroup : ContentView
         returnType: typeof(StackDirection),
         declaringType: typeof(RcAvatarGroup),
         defaultValue: StackDirection.BottomToTop,
-        propertyChanged: OnStackDirectionChangedAsync);
+        propertyChanged: OnStackDirectionChanged);
     #endregion
 
     #region Public bindable properties
@@ -37,8 +37,8 @@ public partial class RcAvatarGroup : ContentView
     /// </summary>
     public ObservableCollection<RcAvatar> Avatars
     {
-        get { return (ObservableCollection<RcAvatar>)GetValue(AvatarsProperty); }
-        set { SetValue(AvatarsProperty, value); }
+        get => (ObservableCollection<RcAvatar>)GetValue(AvatarsProperty);
+        set => SetValue(AvatarsProperty, value);
     }
 
     /// <summary>
@@ -46,8 +46,8 @@ public partial class RcAvatarGroup : ContentView
     /// </summary>
     public StackDirection StackDirection
     {
-        get { return (StackDirection)GetValue(StackDirectionProperty); }
-        set { SetValue(StackDirectionProperty, value); }
+        get => (StackDirection)GetValue(StackDirectionProperty);
+        set => SetValue(StackDirectionProperty, value);
     }
     #endregion
 
@@ -78,11 +78,11 @@ public partial class RcAvatarGroup : ContentView
     /// <summary>
     /// Updates the avatars when the StackDirection property changes.
     /// </summary>
-    private static void OnStackDirectionChangedAsync(BindableObject bindable, object oldValue, object newValue)
+    private static void OnStackDirectionChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is RcAvatarGroup avatarGroup)
         {
-            avatarGroup.UpdateAvatars(avatarGroup.Avatars);
+            avatarGroup.UpdateAvatarsAndGroupRotation();
         }
     }
     #endregion
@@ -97,6 +97,18 @@ public partial class RcAvatarGroup : ContentView
         HandleRemovedItems(e.OldItems);
         HandleCollectionReset(e.Action);
     }
+
+    /// <summary>
+    /// Event handler for the AvatarGroup's Loaded event. 
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="e">Event arguments.</param>
+    private void AvatarGroup_Loaded(object sender, EventArgs e)
+    {
+        UpdateAvatarsAndGroupRotation();
+    }
+
+
     #endregion
 
     #region Private methods
@@ -228,10 +240,28 @@ public partial class RcAvatarGroup : ContentView
         AvatarGroup.RotateYTo(180);
     }
 
-    private void AvatarGroup_Loaded(object sender, EventArgs e)
+    /// <summary>
+    /// Rotates the avatars and the group for stack direction from bottom to top.
+    /// </summary>
+    /// <param name="avatars">The list of avatars to be rotated.</param>
+    private void RotateAvatarsAndGroupFromBottomToTop(IList avatars)
+    {
+        foreach (RcAvatar avatar in avatars)
+        {
+            avatar.RotateYTo(0);
+        }
+
+        AvatarGroup.RotateYTo(0);
+    }
+
+    /// <summary>
+    /// Updates the rotation of avatars and the group based on the current stack direction.
+    /// </summary>
+    private void UpdateAvatarsAndGroupRotation()
     {
         if (StackDirection == StackDirection.BottomToTop)
         {
+            RotateAvatarsAndGroupFromBottomToTop(Avatars);
         }
         else if (StackDirection == StackDirection.TopToBottom)
         {
