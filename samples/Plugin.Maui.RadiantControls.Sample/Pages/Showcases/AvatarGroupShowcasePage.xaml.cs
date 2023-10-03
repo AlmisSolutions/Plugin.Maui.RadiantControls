@@ -6,4 +6,14 @@ public partial class AvatarGroupShowcasePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        await Task.Delay(1);
+
+        _ = AvatarGroupBottomToTop.LoadViewAsync();
+        _ = AvatarGroupTopToBottom.LoadViewAsync();
+    }
 }

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rc="clr-namespace:Plugin.Maui.RadiantControls;assembly=Plugin.Maui.RadiantControls"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Showcases.Views.AvatarCircularWithBadgeBottomLeftView"
+    Padding="10"
+    CornerRadius="10">
+    <HorizontalStackLayout
+        Spacing="10">
+        <rc:RcAvatar
+            HasBadge="True"
+            BadgeBackgroundColor="Grey"
+            ImageSource="avatar.jpeg"
+            Size="32"
+            BadgePosition="BottomLeft"
+            VerticalOptions="End">
+            <rc:RcAvatar.BadgeLabelStyle>
+                <rc:RcLabelStyle TextColor="White"/>
+            </rc:RcAvatar.BadgeLabelStyle>
+        </rc:RcAvatar>
+        <rc:RcAvatar
+            HasBadge="True"
+            BadgeBackgroundColor="Red"
+            ImageSource="avatar.jpeg"
+            Size="48"
+            BadgePosition="BottomLeft"
+            VerticalOptions="End">
+            <rc:RcAvatar.BadgeLabelStyle>
+                <rc:RcLabelStyle TextColor="White"/>
+            </rc:RcAvatar.BadgeLabelStyle>
+        </rc:RcAvatar>
+        <rc:RcAvatar
+            HasBadge="True"
+            BadgeBackgroundColor="Orange"
+            ImageSource="avatar.jpeg"
+            Size="64"
+            BadgePosition="BottomLeft"
+            VerticalOptions="End">
+            <rc:RcAvatar.BadgeLabelStyle>
+                <rc:RcLabelStyle TextColor="White"/>
+            </rc:RcAvatar.BadgeLabelStyle>
+        </rc:RcAvatar>
+        <rc:RcAvatar
+            HasBadge="True"
+            BadgeBackgroundColor="Blue"
+            ImageSource="avatar.jpeg"
+            Size="80"
+            BadgePosition="BottomLeft"
+            VerticalOptions="End">
+            <rc:RcAvatar.BadgeLabelStyle>
+                <rc:RcLabelStyle TextColor="White"/>
+            </rc:RcAvatar.BadgeLabelStyle>
+        </rc:RcAvatar>
+        <rc:RcAvatar
+            HasBadge="True"
+            BadgeBackgroundColor="Green"
+            ImageSource="avatar.jpeg"
+            Size="96"
+            BadgePosition="BottomLeft"
+            VerticalOptions="End">
+            <rc:RcAvatar.BadgeLabelStyle>
+                <rc:RcLabelStyle
+                    TextColor="White"/>
+            </rc:RcAvatar.BadgeLabelStyle>
+        </rc:RcAvatar>
+    </HorizontalStackLayout>
+</Frame>
