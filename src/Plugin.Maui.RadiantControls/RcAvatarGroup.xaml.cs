@@ -232,6 +232,17 @@ public partial class RcAvatarGroup : ContentView
     /// <param name="avatars">The list of avatars to be rotated.</param>
     private void RotateAvatarsAndGroupFromTopToBottom(IList avatars)
     {
+        if (AvatarGroup.Children.Count > 0)
+        {
+            var reversedChildren = avatars.Cast<RcAvatar>().Reverse().ToList();
+            AvatarGroup.Children.Clear();
+
+            foreach (var child in reversedChildren)
+            {
+                AvatarGroup.Children.Add(child);
+            }
+        }
+
         foreach (RcAvatar avatar in avatars)
         {
             avatar.RotateYTo(180);
@@ -246,6 +257,16 @@ public partial class RcAvatarGroup : ContentView
     /// <param name="avatars">The list of avatars to be rotated.</param>
     private void RotateAvatarsAndGroupFromBottomToTop(IList avatars)
     {
+        if (AvatarGroup.Children.Count > 0)
+        {
+            AvatarGroup.Children.Clear();
+
+            foreach (RcAvatar child in avatars)
+            {
+                AvatarGroup.Children.Add(child);
+            }
+        }
+
         foreach (RcAvatar avatar in avatars)
         {
             avatar.RotateYTo(0);
