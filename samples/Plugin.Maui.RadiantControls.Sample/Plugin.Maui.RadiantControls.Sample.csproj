@@ -80,6 +80,7 @@
 	  <None Remove="Pages\Showcases\" />
 	  <None Remove="Pages\Playgrounds\" />
 	  <None Remove="Pages\Showcases\Views\" />
+	  <None Remove="ViewModels\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Resources\Images\" />
@@ -91,6 +92,7 @@
 	  <Folder Include="Pages\Playgrounds\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Pages\Showcases\Views\" />
+	  <Folder Include="ViewModels\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\avatar.jpeg" />
