@@ -4,7 +4,7 @@ namespace Plugin.Maui.RadiantControls.Sample.Pages.Playgrounds;
 
 public partial class ListViewPlaygroundPage : ContentPage
 {
-    private int _spacing = 15;
+    private int _itemSpacing = 15;
     private StackOrientation _orientation = StackOrientation.Horizontal;
     private bool _animated;
     private ScrollToPosition _scrollToPosition;
@@ -16,12 +16,12 @@ public partial class ListViewPlaygroundPage : ContentPage
 		BindingContext = this;
 	}
 
-    public int Spacing
+    public int ItemSpacing
     {
-        get => _spacing;
+        get => _itemSpacing;
         set
         {
-            _spacing = value;
+            _itemSpacing = value;
             OnPropertyChanged();
         }
     }

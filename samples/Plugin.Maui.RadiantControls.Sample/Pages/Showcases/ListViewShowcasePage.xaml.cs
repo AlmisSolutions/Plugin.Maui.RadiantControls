@@ -6,4 +6,13 @@ public partial class ListViewShowcasePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        await Task.Delay(1);
+
+        _ = ListViewWithGrowingContent.LoadViewAsync();
+    }
 }

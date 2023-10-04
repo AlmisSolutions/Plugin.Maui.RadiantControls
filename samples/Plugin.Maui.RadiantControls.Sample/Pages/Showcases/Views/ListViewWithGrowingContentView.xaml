@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rc="clr-namespace:Plugin.Maui.RadiantControls;assembly=Plugin.Maui.RadiantControls"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Showcases.Views.ListViewWithGrowingContentView"
+    Padding="10"
+    VerticalOptions="FillAndExpand"
+    CornerRadius="10">
+    <StackLayout>
+        <Button
+            Text="Add item"
+            Clicked="Button_Clicked"
+            Margin="0,0,0,10"/>
+        <rc:RcListView
+            x:Name="TextsRcListView"
+            ItemSpacing="20"
+            ItemsSource="{Binding Texts}"
+            Orientation="Horizontal">
+            <rc:RcListView.ItemTemplate>
+                <DataTemplate>
+                    <rc:RcLabel
+                        Text="{Binding .}"
+                        LineBreakMode="WordWrap"
+                        VerticalOptions="Start"
+                        MaximumWidthRequest="100"/>
+                </DataTemplate>
+            </rc:RcListView.ItemTemplate>
+        </rc:RcListView>
+    </StackLayout>
+</Frame>
+

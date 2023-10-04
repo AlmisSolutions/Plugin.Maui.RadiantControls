@@ -1,12 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Docs.ListViewDocPage"
-             Title="ListViewDocPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Plugin.Maui.RadiantControls.Sample.Pages.Docs.ListViewDocPage"
+    Title="RcListView Docs">
+    <ScrollView>
+        <StackLayout Margin="15">
+            <Label
+                Text="RcListView"
+                FontSize="Title"
+                FontAttributes="Bold" />
+            <Label
+                Margin="0,10,0,10"
+                Text="The RcListView is a component that represents a custom list view control that provides enhanced features."
+                FontSize="Body" />
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="10">
+                <Button
+                    x:Name="ShowcaseButton"
+                    Text="Showcase"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="ShowcaseButton_Clicked"/>
+                <Button
+                    x:Name="PlaygroundButton"
+                    Text="Playground"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="PlaygroundButton_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -13,5 +13,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(AvatarPlaygroundPage), typeof(AvatarPlaygroundPage));
         Routing.RegisterRoute(nameof(AvatarGroupShowcasePage), typeof(AvatarGroupShowcasePage));
         Routing.RegisterRoute(nameof(AvatarGroupPlaygroundPage), typeof(AvatarGroupPlaygroundPage));
+        Routing.RegisterRoute(nameof(ListViewPlaygroundPage), typeof(ListViewPlaygroundPage));
+        Routing.RegisterRoute(nameof(ListViewShowcasePage), typeof(ListViewShowcasePage));
     }
 }

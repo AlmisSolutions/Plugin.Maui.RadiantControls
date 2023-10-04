@@ -18,8 +18,8 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Keyboard="Numeric"
-                    Placeholder="Spacing"
-                    Text="{Binding Spacing, Mode=TwoWay}" />
+                    Placeholder="Item Spacing"
+                    Text="{Binding ItemSpacing, Mode=TwoWay}" />
                 <Picker
                     Grid.Row="0"
                     Grid.Column="1"
@@ -117,7 +117,7 @@
             <rc:RcListView
                 x:Name="ZodiacsList"
                 Orientation="{Binding Orientation}"
-                Spacing="{Binding Spacing}">
+                ItemSpacing="{Binding ItemSpacing}">
                 <rc:RcListView.Items>
                     <zodiacs:AriesView />
                     <zodiacs:TaurusView />

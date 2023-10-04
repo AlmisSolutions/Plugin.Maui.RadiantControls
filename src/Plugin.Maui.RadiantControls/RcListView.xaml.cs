@@ -52,7 +52,8 @@ public partial class RcListView : ContentView
         BindableProperty.Create(
             nameof(ItemsSource),
             typeof(IEnumerable),
-            typeof(RcListView));
+            typeof(RcListView),
+            propertyChanged: OnItemsSourceChanged);
 
     /// <summary>
     /// Bindable property for the template used to display each item in the RcListView.
@@ -61,7 +62,9 @@ public partial class RcListView : ContentView
         BindableProperty.Create(
             nameof(ItemTemplate),
             typeof(DataTemplate),
-            typeof(RcListView));
+            typeof(RcListView),
+            propertyChanged: OnItemTemplateChanged);
+
 
     /// <summary>
     /// Bindable property for the template selector used to choose a template for each item in the RcListView.
@@ -70,7 +73,8 @@ public partial class RcListView : ContentView
         BindableProperty.Create(
             nameof(ItemTemplateSelector),
             typeof(DataTemplateSelector),
-            typeof(RcListView));
+            typeof(RcListView),
+            propertyChanged: OnItemTemplateSelectorChanged);
 
     /// <summary>
     /// Bindable property for the currently selected item.
@@ -106,8 +110,8 @@ public partial class RcListView : ContentView
     /// <summary>
     /// Bindable property for the spacing between items.
     /// </summary>
-    public static readonly BindableProperty SpacingProperty = BindableProperty.Create(
-        nameof(Spacing),
+    public static readonly BindableProperty ItemSpacingProperty = BindableProperty.Create(
+        nameof(ItemSpacing),
         typeof(int),
         typeof(RcListView),
         default(int));
@@ -200,10 +204,10 @@ public partial class RcListView : ContentView
     /// <summary>
     /// Gets or sets the spacing between items in the list view.
     /// </summary>
-    public int Spacing
+    public int ItemSpacing
     {
-        get => (int)GetValue(SpacingProperty);
-        set => SetValue(SpacingProperty, value);
+        get => (int)GetValue(ItemSpacingProperty);
+        set => SetValue(ItemSpacingProperty, value);
     }
 
     /// <summary>
@@ -558,6 +562,48 @@ public partial class RcListView : ContentView
             }
         }
     }
+
+    /// <summary>
+    /// Handles changes to the <see cref="ItemsSource"/> property of the <see cref="RcListView"/>.
+    /// </summary>
+    /// <param name="bindable">The bindable object where the property changed.</param>
+    /// <param name="oldValue">The old value of the property.</param>
+    /// <param name="newValue">The new value of the property.</param>
+    private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is RcListView listView && newValue is IEnumerable items)
+        {
+            BindableLayout.SetItemsSource(listView.StackListView, items);
+        }
+    }
+
+    /// <summary>
+    /// Handles changes to the <see cref="ItemTemplate"/> property of the <see cref="RcListView"/>.
+    /// </summary>
+    /// <param name="bindable">The bindable object where the property changed.</param>
+    /// <param name="oldValue">The old value of the property.</param>
+    /// <param name="newValue">The new value of the property.</param>
+    private static void OnItemTemplateChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is RcListView listView && newValue is DataTemplate dataTemplate)
+        {
+            BindableLayout.SetItemTemplate(listView.StackListView, dataTemplate);
+        }
+    }
+
+    /// <summary>
+    /// Handles changes to the <see cref="ItemTemplateSelector"/> property of the <see cref="RcListView"/>.
+    /// </summary>
+    /// <param name="bindable">The bindable object where the property changed.</param>
+    /// <param name="oldValue">The old value of the property.</param>
+    /// <param name="newValue">The new value of the property.</param>
+    private static void OnItemTemplateSelectorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is RcListView listView && newValue is DataTemplateSelector dataTemplateSelector)
+        {
+            BindableLayout.SetItemTemplateSelector(listView.StackListView, dataTemplateSelector);
+        }
+    }
     #endregion
 
     #region Private static methods
@@ -616,6 +662,8 @@ public partial class RcListView : ContentView
             tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;
 
             view.GestureRecognizers.Add(tapGestureRecognizer);
+
+            ExecuteInvalidateLayout();
         }
     }
 
@@ -688,7 +736,7 @@ public partial class RcListView : ContentView
         for (var i = 0; i < StackListView.Children.Count; i++)
         {
             var child = StackListView.Children[i] as View;
-            viewEndPosition = viewEndPosition + Spacing + (Orientation == StackOrientation.Horizontal ? child.Width : child.Height);
+            viewEndPosition = viewEndPosition + ItemSpacing + (Orientation == StackOrientation.Horizontal ? child.Width : child.Height);
 
             if (scrollPosition > viewEndPosition)
             {
@@ -831,6 +879,20 @@ public partial class RcListView : ContentView
         else
         {
             return StackListView.Children.ElementAtOrDefault(index);
+        }
+    }
+
+    /// <summary>
+    /// Invalidates the layout.
+    /// </summary>
+    private async void ExecuteInvalidateLayout()
+    {
+        // TODO: Check the other platforms.
+        if (DeviceInfo.Platform == DevicePlatform.macOS || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
+        {
+            await Task.Delay(1);
+
+            InvalidateLayout();
         }
     }
     #endregion
