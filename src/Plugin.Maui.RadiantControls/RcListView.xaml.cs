@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using Plugin.Maui.RadiantControls.Extensions;
 
 namespace Plugin.Maui.RadiantControls;
@@ -856,7 +857,7 @@ public partial class RcListView : ContentView
         }
         else
         {
-            return ItemsSource.Cast<object>().FirstOrDefault();
+            return ItemsSource.Cast<object>().ElementAtOrDefault(index);
         }
     }
 
