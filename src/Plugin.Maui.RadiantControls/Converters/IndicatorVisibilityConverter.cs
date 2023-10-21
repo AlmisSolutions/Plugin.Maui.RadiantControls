@@ -6,9 +6,9 @@ public class IndicatorVisibilityConverter : IMultiValueConverter
 {
     public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value[0] is int maxVisible &&
-            value[1] is bool hideSingle &&
-            value[2] is int count &&
+        if (value.ElementAtOrDefault(0) is int maxVisible &&
+            value.ElementAtOrDefault(1) is bool hideSingle &&
+            value.ElementAtOrDefault(2) is int count &&
             parameter is View indicatorFrame &&
             indicatorFrame.BindingContext is int itemPosition)
         {

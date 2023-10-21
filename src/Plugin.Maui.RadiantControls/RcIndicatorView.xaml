@@ -33,8 +33,15 @@
                     <Frame.Triggers>
                         <DataTrigger
                             TargetType="Frame"
-                            Binding="{Binding Position, Source={x:Reference Self}, Converter={StaticResource IndicatorSelectedConverter}, ConverterParameter={x:Reference IndicatorFrame}}"
                             Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding
+                                    Converter="{StaticResource IndicatorSelectedConverter}"
+                                    ConverterParameter="{x:Reference IndicatorFrame}">
+                                    <Binding Path="Position" Source="{x:Reference Self}"/>
+                                    <Binding Path="ItemsSource" Source="{x:Reference Self}"/>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
                             <Setter Property="BackgroundColor" Value="{Binding SelectedIndicatorColor, Source={x:Reference Self}}" />
                             <Setter Property="BorderColor" Value="{Binding SelectedIndicatorColor, Source={x:Reference Self}}" />
                         </DataTrigger>
