@@ -49,6 +49,7 @@
 	  <None Remove="Platforms\Tizen\" />
 	  <None Remove="Platforms\Windows\" />
 	  <None Remove="Extensions\" />
+	  <None Remove="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Platforms\Android\" />
@@ -57,5 +58,6 @@
 	  <Folder Include="Platforms\Tizen\" />
 	  <Folder Include="Platforms\Windows\" />
 	  <Folder Include="Extensions\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 </Project>

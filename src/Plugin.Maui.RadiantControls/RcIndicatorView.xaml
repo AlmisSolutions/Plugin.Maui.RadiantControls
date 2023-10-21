@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:Plugin.Maui.RadiantControls.Converters"
+    x:Class="Plugin.Maui.RadiantControls.RcIndicatorView"
+    x:Name="Self">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:IndicatorSelectedConverter x:Key="IndicatorSelectedConverter"/>
+            <converters:IndicatorVisibilityConverter x:Key="IndicatorVisibilityConverter"/>
+        </ResourceDictionary>
+        <DataTemplate x:Key="DefaultIndicatorTemplate">
+            <ContentView>
+                <ContentView.IsVisible>
+                    <MultiBinding
+                        Converter="{StaticResource IndicatorVisibilityConverter}"
+                        ConverterParameter="{x:Reference IndicatorFrame}">
+                        <Binding Path="MaximumVisible" Source="{x:Reference Self}"/>
+                        <Binding Path="HideSingle"  Source="{x:Reference Self}"/>
+                        <Binding Path="ItemsSourceCount"  Source="{x:Reference Self}"/>
+                    </MultiBinding>
+                </ContentView.IsVisible>
+                <Frame
+                    x:Name="IndicatorFrame"
+                    Padding="0"
+                    BindingContextChanged="IndicatorFrame_BindingContextChanged"
+                    BackgroundColor="{Binding IndicatorColor, Source={x:Reference Self}}"
+                    BorderColor="{Binding IndicatorColor, Source={x:Reference Self}}"
+                    WidthRequest="{Binding IndicatorSize, Source={x:Reference Self}}"
+                    HeightRequest="{Binding IndicatorSize, Source={x:Reference Self}}"
+                    CornerRadius="{Binding IndicatorCornerRadius, Source={x:Reference Self}}">
+                    <Frame.Triggers>
+                        <DataTrigger
+                            TargetType="Frame"
+                            Binding="{Binding Position, Source={x:Reference Self}, Converter={StaticResource IndicatorSelectedConverter}, ConverterParameter={x:Reference IndicatorFrame}}"
+                            Value="True">
+                            <Setter Property="BackgroundColor" Value="{Binding SelectedIndicatorColor, Source={x:Reference Self}}" />
+                            <Setter Property="BorderColor" Value="{Binding SelectedIndicatorColor, Source={x:Reference Self}}" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="IndicatorFrame_Tapped" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+        </DataTemplate>
+    </ContentView.Resources>
+    <StackLayout
+        x:Name="IndicatorsStackLayout"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Orientation="{Binding Orientation, Source={x:Reference Self}}"
+        Spacing="{Binding IndicatorSpacing, Source={x:Reference Self}}"
+        BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference Self}}"
+        BindableLayout.ItemTemplate="{Binding IndicatorTemplate, Source={x:Reference Self}}">
+    </StackLayout>
+</ContentView>
+
