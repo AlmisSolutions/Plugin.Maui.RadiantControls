@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.ObjectModel;
 using Plugin.Maui.RadiantControls.Converters;
 using Plugin.Maui.RadiantControls.Extensions;
@@ -282,6 +283,8 @@ public partial class RcIndicatorView : ContentView
     }
     #endregion
 
+    public event EventHandler<SelectedPositionChangedEventArgs> PositionChanged;
+
     #region Constructors
     public RcIndicatorView()
 	{
@@ -332,6 +335,11 @@ public partial class RcIndicatorView : ContentView
         if (bindable is RcIndicatorView indicatorView)
         {
             indicatorView.OnPropertyChanged(nameof(ItemsSourceCount));
+
+            if (indicatorView.Position == -1)
+            {
+                indicatorView.Position = 0;
+            }
         }
     }
 
@@ -404,10 +412,12 @@ public partial class RcIndicatorView : ContentView
             if (indicatorFrame.BindingContext is int position)
             {
                 Position = position;
+                PositionChanged?.Invoke(indicatorFrame, new SelectedPositionChangedEventArgs(Position));
             }
             else if (indicatorFrame.BindingContext is object item)
             {
                 Position = ItemsSource.Cast<object>().IndexOf(item);
+                PositionChanged?.Invoke(indicatorFrame, new SelectedPositionChangedEventArgs(Position));
             }
         }
     }

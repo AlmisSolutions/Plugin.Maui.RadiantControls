@@ -299,6 +299,11 @@ public partial class RcListView : ContentView
         get => (bool)GetValue(IsScrollingEnabledProperty);
         set => SetValue(IsScrollingEnabledProperty, value);
     }
+
+    public int CurrentIndex
+    {
+        get => _currentIndex;
+    }
     #endregion
 
     #region Public event handlers
@@ -759,19 +764,22 @@ public partial class RcListView : ContentView
             }
         }
 
-        VisibleItems = visibleItems;
-        VisibleViews = visibleViews;
-        VisibleIndexes = visibleIndexes;
+        var scrollingSpace = contentSize - viewportSize;
+        var hasScrolledToEnd = scrollingSpace <= scrollPosition;
 
-        if (!_visibleIndexes.Contains(_currentIndex))
+        if (!(VisibleIndexes?.SequenceEqual(visibleIndexes) ?? false) || hasScrolledToEnd)
         {
-            _currentIndex = visibleIndexes.FirstOrDefault();
-            _currentItem = visibleItems.FirstOrDefault();
-            _currentView = visibleViews.FirstOrDefault();
-        }
+            VisibleItems = visibleItems;
+            VisibleViews = visibleViews;
+            VisibleIndexes = visibleIndexes;
 
-        VisibilityChanged?.Invoke(this, new RcListViewVisibilityChangedEventArgs(
-            visibleItems, visibleViews, visibleIndexes));
+            _currentIndex = hasScrolledToEnd ? visibleIndexes.LastOrDefault() : visibleIndexes.FirstOrDefault();
+            _currentItem = hasScrolledToEnd ? visibleItems.LastOrDefault() : visibleItems.FirstOrDefault();
+            _currentView = hasScrolledToEnd ? visibleViews.LastOrDefault() : visibleViews.FirstOrDefault();
+
+            VisibilityChanged?.Invoke(this, new RcListViewVisibilityChangedEventArgs(
+                visibleItems, visibleViews, visibleIndexes));
+        }
     }
 
     /// <summary>

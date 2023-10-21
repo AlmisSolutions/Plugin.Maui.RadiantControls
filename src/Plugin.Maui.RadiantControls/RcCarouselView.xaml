@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rc="clr-namespace:Plugin.Maui.RadiantControls"
+    xmlns:converters="clr-namespace:Plugin.Maui.RadiantControls.Converters"
+    x:Class="Plugin.Maui.RadiantControls.RcCarouselView"
+    x:Name="Self">
+    <ContentView.Resources>
+        <converters:CarouselIndexSelectedConverter x:Key="CarouselIndexSelectedConverter" />
+    </ContentView.Resources>
+    <Grid
+        RowDefinitions="Auto,Auto"
+        RowSpacing="15">
+        <Grid
+            Grid.Row="0"
+            ColumnDefinitions="Auto,*,Auto">
+            <rc:RcListView
+                x:Name="CarouselListView"
+                Grid.ColumnSpan="3"
+                ChildAdded="CarouselListView_ChildAdded"
+                Orientation="Horizontal">
+            </rc:RcListView>
+            <Button
+                x:Name="PreviousButton"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                BackgroundColor="#66FFFFFF"
+                FontSize="Title"
+                Text="&lt;"
+                IsEnabled="{Binding CanScrollToPreviousItem, Source={x:Reference CarouselListView}}"
+                Clicked="PreviousButton_Clicked"/>
+            <Button
+                x:Name="NextButton"
+                Grid.Column="2"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                BackgroundColor="#66FFFFFF"
+                FontSize="Title"
+                Text="&gt;"
+                IsEnabled="{Binding CanScrollToNextItem, Source={x:Reference CarouselListView}}"
+                Clicked="NextButton_Clicked"/>
+            <!--<StackLayout
+                Grid.Column="1"
+                Orientation="Horizontal"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Margin="0,0,0,10"
+                Spacing="5"
+                BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference Self}}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <Frame
+                                x:Name="DotFrame"
+                                VerticalOptions="End"
+                                HorizontalOptions="Start"
+                                Padding="0"
+                                HasShadow="False"
+                                CornerRadius="10"
+                                HeightRequest="20"
+                                WidthRequest="20"
+                                BorderColor="Transparent"
+                                BackgroundColor="Grey">
+                                <Frame.Triggers>
+                                    <DataTrigger
+                                        TargetType="Frame"
+                                        Binding="{Binding VisibleItems, Source={x:Reference CarouselListView}, Converter={StaticResource CarouselIndexSelectedConverter}, ConverterParameter={x:Reference DotFrame}}"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="Black" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        TargetType="Frame"
+                                        Binding="{Binding VisibleItems, Source={x:Reference CarouselListView}, Converter={StaticResource CarouselIndexSelectedConverter}, ConverterParameter={x:Reference DotFrame}}"
+                                        Value="False">
+                                        <Setter Property="BackgroundColor" Value="Grey" />
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                            </Frame>
+                            <ContentView.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="TapGestureRecognizer_Tapped"/>
+                            </ContentView.GestureRecognizers>
+                        </ContentView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>-->
+        </Grid>
+        <rc:RcIndicatorView
+            x:Name="CarouselIndicator"
+            Grid.Row="0"
+            Orientation="Horizontal"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            IndicatorSpacing="5"
+            ItemsSource="{Binding ItemsSource, Source={x:Reference Self}}"/>
+    </Grid>
+</ContentView>
