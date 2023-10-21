@@ -14,9 +14,9 @@ public partial class RcAvatarGroup : ContentView
     /// Bindable property for the avatars collection.
     /// </summary>
     public static readonly BindableProperty AvatarsProperty = BindableProperty.Create(
-        propertyName: nameof(Avatars),
-        returnType: typeof(IList<RcAvatar>),
-        declaringType: typeof(RcAvatarGroup),
+        nameof(Avatars),
+        typeof(IList<RcAvatar>),
+        typeof(RcAvatarGroup),
         defaultValueCreator: (bindable) => new ObservableCollection<RcAvatar>(),
         propertyChanged: OnAvatarsChanged);
 
@@ -24,10 +24,10 @@ public partial class RcAvatarGroup : ContentView
     /// Bindable property for the stack direction.
     /// </summary>
     public static readonly BindableProperty StackDirectionProperty = BindableProperty.Create(
-        propertyName: nameof(StackDirection),
-        returnType: typeof(StackDirection),
-        declaringType: typeof(RcAvatarGroup),
-        defaultValue: StackDirection.BottomToTop,
+        nameof(StackDirection),
+        typeof(StackDirection),
+        typeof(RcAvatarGroup),
+        StackDirection.BottomToTop,
         propertyChanged: OnStackDirectionChanged);
     #endregion
 

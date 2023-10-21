@@ -15,87 +15,87 @@ public partial class RcAvatar : ContentView
     /// Bindable property for the margin around the avatar.
     /// </summary>
     public static readonly BindableProperty AvatarPaddingProperty = BindableProperty.Create(
-        propertyName: nameof(AvatarPadding),
-        returnType: typeof(Thickness),
-        declaringType: typeof(RcAvatar),
-        defaultValue: default(Thickness),
+        nameof(AvatarPadding),
+        typeof(Thickness),
+        typeof(RcAvatar),
+        default(Thickness),
         propertyChanged: OnAvatarMarginChanged);
 
     /// <summary>
     /// Bindable property for the background color of the avatar's container.
     /// </summary>
     public static readonly BindableProperty ContainerBackgroundColorProperty = BindableProperty.Create(
-        propertyName: nameof(ContainerBackgroundColor),
-        returnType: typeof(Color),
-        declaringType: typeof(RcAvatar),
-        defaultValue: default(Color));
+        nameof(ContainerBackgroundColor),
+        typeof(Color),
+        typeof(RcAvatar),
+        default(Color));
 
     /// <summary>
     /// Bindable property for the corner radius of the avatar, determining its roundness.
     /// </summary>
     public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(
-        propertyName: nameof(CornerRadius),
-        returnType: typeof(float),
-        declaringType: typeof(RcAvatar),
-        defaultValue: default(float),
+        nameof(CornerRadius),
+        typeof(float),
+        typeof(RcAvatar),
+        default(float),
         propertyChanged: OnCornerRadiusChanged);
 
     /// <summary>
     /// Bindable property for the shape of the avatar, e.g., circle or square.
     /// </summary>
     public static readonly BindableProperty ShapeProperty = BindableProperty.Create(
-        propertyName: nameof(Shape),
-        returnType: typeof(AvatarShape),
-        declaringType: typeof(RcAvatar),
-        defaultValue: AvatarShape.Circle,
+        nameof(Shape),
+        typeof(AvatarShape),
+        typeof(RcAvatar),
+        AvatarShape.Circle,
         propertyChanged: OnShapeChanged);
 
     /// <summary>
     /// Bindable property for the size of the avatar.
     /// </summary>
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(
-        propertyName: nameof(Size),
-        returnType: typeof(double),
-        declaringType: typeof(RcAvatar),
-        defaultValue: -1.0,
+        nameof(Size),
+        typeof(double),
+        typeof(RcAvatar),
+        -1.0,
         propertyChanged: OnSizeChanged);
 
     /// <summary>
     /// Bindable property for the image source of the avatar.
     /// </summary>
     public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(
-        propertyName: nameof(ImageSource),
-        returnType: typeof(ImageSource),
-        declaringType: typeof(RcAvatar),
-        defaultValue: default(ImageSource),
+        nameof(ImageSource),
+        typeof(ImageSource),
+        typeof(RcAvatar),
+        default(ImageSource),
         propertyChanged: OnImageSourceChanged);
 
     /// <summary>
     /// Bindable property for a placeholder image to be shown when the main image isn't available.
     /// </summary>
     public static readonly BindableProperty PlaceholderImageSourceProperty = BindableProperty.Create(
-        propertyName: nameof(PlaceholderImageSource),
-        returnType: typeof(ImageSource),
-        declaringType: typeof(RcAvatar),
-        defaultValue: default(ImageSource),
+        nameof(PlaceholderImageSource),
+        typeof(ImageSource),
+        typeof(RcAvatar),
+        default(ImageSource),
         propertyChanged: OnPlaceholderImageSourceChanged);
 
     /// <summary>
     /// Bindable property for the initials to be displayed on the avatar.
     /// </summary>
     public static readonly BindableProperty InitialsProperty = BindableProperty.Create(
-        propertyName: nameof(Initials),
-        returnType: typeof(string),
-        declaringType: typeof(RcAvatar),
-        defaultValue: null);
+        nameof(Initials),
+        typeof(string),
+        typeof(RcAvatar),
+        null);
 
     /// <summary>
     /// Bindable property for the style of the initials label.
     /// </summary>
     public static readonly BindableProperty InitialsLabelStyleProperty = BindableProperty.Create(
-        propertyName: nameof(InitialsLabelStyle),
-        returnType: typeof(RcLabelStyle),
-        declaringType: typeof(RcAvatar),
+        nameof(InitialsLabelStyle),
+        typeof(RcLabelStyle),
+        typeof(RcAvatar),
         defaultValueCreator: (bindable) => new RcLabelStyle
         {
             Padding = 10
@@ -105,73 +105,73 @@ public partial class RcAvatar : ContentView
     /// Bindable property for indicating whether the RcAvatar has a badge.
     /// </summary>
     public static readonly BindableProperty HasBadgeProperty = BindableProperty.Create(
-        propertyName: nameof(HasBadge),
-        returnType: typeof(bool),
-        declaringType: typeof(RcAvatar));
+        nameof(HasBadge),
+        typeof(bool),
+        typeof(RcAvatar));
 
     /// <summary>
     /// Bindable property for the size of the badge.
     /// </summary>
     public static readonly BindableProperty BadgeSizeProperty = BindableProperty.Create(
-        propertyName: nameof(BadgeSize),
-        returnType: typeof(double),
-        declaringType: typeof(RcAvatar),
-        defaultValue: -1.0);
+        nameof(BadgeSize),
+        typeof(double),
+        typeof(RcAvatar),
+        -1.0);
 
     /// <summary>
     /// Bindable property for the style of the badge label.
     /// </summary>
     public static readonly BindableProperty BadgeLabelStyleProperty = BindableProperty.Create(
-        propertyName: nameof(BadgeLabelStyle),
-        returnType: typeof(RcLabelStyle),
-        declaringType: typeof(RcAvatar),
+        nameof(BadgeLabelStyle),
+        typeof(RcLabelStyle),
+        typeof(RcAvatar),
         defaultValueCreator: (bindable) => new RcLabelStyle());
 
     /// <summary>
     /// Bindable property for the padding of the inner badge.
     /// </summary>
     public static readonly BindableProperty BadgePaddingProperty = BindableProperty.Create(
-        propertyName: nameof(BadgePadding),
-        returnType: typeof(Thickness),
-        declaringType: typeof(RcAvatar),
-        defaultValue:   default(Thickness),
+        nameof(BadgePadding),
+        typeof(Thickness),
+        typeof(RcAvatar),
+          default(Thickness),
         propertyChanged: OnBadgePaddingChanged);
 
     /// <summary>
     /// Bindable property for the position of the badge on the avatar.
     /// </summary>
     public static readonly BindableProperty BadgePositionProperty = BindableProperty.Create(
-        propertyName: nameof(BadgePosition),
-        returnType: typeof(BadgePosition),
-        declaringType: typeof(RcAvatar),
-        defaultValue: BadgePosition.BottomRight,
+        nameof(BadgePosition),
+        typeof(BadgePosition),
+        typeof(RcAvatar),
+        BadgePosition.BottomRight,
         propertyChanged: OnBadgePositionChanged);
 
     /// <summary>
     /// Bindable property for the text displayed on the avatar's badge.
     /// </summary>
     public static readonly BindableProperty BadgeTextProperty = BindableProperty.Create(
-        propertyName: nameof(BadgeText),
-        returnType: typeof(string),
-        declaringType: typeof(RcAvatar));
+        nameof(BadgeText),
+        typeof(string),
+        typeof(RcAvatar));
 
     /// <summary>
     /// Bindable property for the background color of the avatar's badge.
     /// </summary>
     public static readonly BindableProperty BadgeBackgroundColorProperty = BindableProperty.Create(
-        propertyName: nameof(BadgeBackgroundColor),
-        returnType: typeof(Color),
-        declaringType: typeof(RcAvatar),
-        defaultValue: default(Color));
+        nameof(BadgeBackgroundColor),
+        typeof(Color),
+        typeof(RcAvatar),
+        default(Color));
 
     /// <summary>
     /// Bindable property for the border color of the avatar's badge.
     /// </summary>
     public static readonly BindableProperty BadgeBorderColorProperty = BindableProperty.Create(
-        propertyName: nameof(BadgeBorderColor),
-        returnType: typeof(Color),
-        declaringType: typeof(RcAvatar),
-        defaultValue: Colors.Transparent);
+        nameof(BadgeBorderColor),
+        typeof(Color),
+        typeof(RcAvatar),
+        Colors.Transparent);
     #endregion
 
     #region Public properties
